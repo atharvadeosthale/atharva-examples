@@ -20,8 +20,6 @@ type SandboxProps = {
 
 export function SandboxComponent({ config, configSection }: SandboxProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [darkMode, setDarkMode] = useState(config.defaultDarkMode ?? false);
-  const [zoom, setZoom] = useState(config.defaultZoom ?? 100);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +34,7 @@ export function SandboxComponent({ config, configSection }: SandboxProps) {
           src={config.content as string}
           className="w-full h-full"
           style={{
-            transform: `scale(${zoom / 100})`,
+            // transform: `scale(${zoom / 100})`,
             transformOrigin: "top left",
           }}
           title="Sandbox Preview"
@@ -46,7 +44,7 @@ export function SandboxComponent({ config, configSection }: SandboxProps) {
       return (
         <div
           style={{
-            transform: `scale(${zoom / 100})`,
+            // transform: `scale(${zoom / 100})`,
             transformOrigin: "top left",
           }}
         >
@@ -66,11 +64,7 @@ export function SandboxComponent({ config, configSection }: SandboxProps) {
   );
 
   return (
-    <div
-      className={`flex flex-col h-screen bg-background ${
-        darkMode ? "dark" : ""
-      }`}
-    >
+    <div className={`flex flex-col h-screen bg-background light`}>
       <header className="flex items-center justify-between p-4 bg-background border-b">
         <div className="flex items-center space-x-2">
           <Laptop className="w-6 h-6" />
@@ -94,9 +88,7 @@ export function SandboxComponent({ config, configSection }: SandboxProps) {
         </aside>
         <main className="flex-1 p-6 overflow-auto">
           <div
-            className={`w-full h-full rounded-lg overflow-hidden border ${
-              darkMode ? "bg-gray-800" : "bg-white"
-            }`}
+            className={`w-full h-full rounded-lg overflow-hidden border bg-white`}
           >
             {renderContent()}
           </div>
